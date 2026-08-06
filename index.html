@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooke AP3 - 果園影像器材</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+            background: #000;
+            color: #ccc;
+            line-height: 1.8;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+        }
+        .hero-content h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            margin-bottom: 20px;
+        }
+        .hero-content p {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: #ccc;
+        }
+        
+        /* Range Section */
+        .range-section {
+            background: #0a0a0a;
+            padding: 60px 0;
+        }
+        .range-section h2 {
+            text-align: center;
+            color: #fff;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        .range-grid {
+            display: table;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .range-row {
+            display: table-row;
+        }
+        .range-cell {
+            display: table-cell;
+            width: 33.33%;
+            padding: 20px;
+            text-align: center;
+            vertical-align: top;
+        }
+        .range-cell img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 15px;
+        }
+        .range-cell h3 {
+            color: #fff;
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+        .range-cell p {
+            color: #ccc;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+        }
+        
+        /* Product Sets */
+        .product-section {
+            background: #000;
+            padding: 60px 0;
+        }
+        .product-section h2 {
+            text-align: center;
+            color: #fff;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        .product-grid {
+            display: table;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .product-row {
+            display: table-row;
+        }
+        .product-cell {
+            display: table-cell;
+            width: 50%;
+            padding: 20px;
+            vertical-align: top;
+        }
+        .product-cell img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .product-cell h3 {
+            color: #fff;
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+        .product-cell p {
+            color: #ccc;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+        }
+        
+        /* AP3 Features */
+        .features-section {
+            background: #0a0a0a;
+            padding: 60px 0;
+        }
+        .features-section h2 {
+            text-align: center;
+            color: #fff;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        .features-grid {
+            display: table;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .features-row {
+            display: table-row;
+        }
+        .features-cell {
+            display: table-cell;
+            width: 40%;
+            padding: 30px;
+            vertical-align: top;
+            border-right: 1px solid #222;
+        }
+        .features-cell:last-child {
+            width: 60%;
+            border-right: none;
+        }
+        .feature-item {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #222;
+        }
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+        .feature-item h4 {
+            color: #f5c518;
+            font-size: clamp(1rem, 1.8vw, 1.3rem);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        .feature-item p {
+            color: #ccc;
+            font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+            line-height: 1.8;
+        }
+        
+        /* Accordion Section */
+        .accordion-section {
+            background: #000;
+            padding: 60px 0;
+        }
+        .accordion-section h2 {
+            text-align: center;
+            color: #fff;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        .accordion-container {
+            display: table;
+            width: 100%;
+            background: #000;
+            border-collapse: collapse;
+        }
+        .accordion-row {
+            display: table-row;
+        }
+        .accordion-left {
+            display: table-cell;
+            width: 40%;
+            padding: 0;
+            border-right: 1px solid #222;
+            vertical-align: top;
+        }
+        .accordion-right {
+            display: table-cell;
+            width: 60%;
+            padding: 30px;
+            vertical-align: top;
+        }
+        .accordion-item {
+            border-bottom: 1px solid #222;
+        }
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            cursor: pointer;
+            color: #fff;
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
+            transition: background 0.3s;
+        }
+        .accordion-header:hover {
+            background: #111;
+        }
+        .accordion-icon {
+            color: #f5c518;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .accordion-body {
+            display: none;
+            padding: 0 20px 20px;
+        }
+        .accordion-body p {
+            color: #ccc;
+            font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        .carousel-progress {
+            width: 100%;
+            height: 4px;
+            background: #222;
+            margin-top: 15px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .carousel-progress-bar {
+            width: 0%;
+            height: 100%;
+            background: #f5c518;
+            transition: width 0.3s linear;
+            border-radius: 2px;
+        }
+        
+        /* Media in accordion */
+        .media-container {
+            position: relative;
+        }
+        .media-container video,
+        .media-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .video-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #333;
+        }
+        .video-progress-bar {
+            width: 0%;
+            height: 100%;
+            background: #f5c518;
+            display: block;
+        }
+        
+        /* Imaging Section */
+        .imaging-section {
+            background: #0a0a0a;
+            padding: 60px 0;
+        }
+        .imaging-section h2 {
+            text-align: center;
+            color: #fff;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        .imaging-container {
+            display: table;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .imaging-row {
+            display: table-row;
+        }
+        .imaging-text {
+            display: table-cell;
+            width: 40%;
+            padding: 30px;
+            vertical-align: top;
+            border-right: 1px solid #222;
+        }
+        .imaging-text h5 {
+            color: #f5c518;
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .imaging-text h3 {
+            color: #fff;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        .imaging-text p {
+            color: #ccc;
+            font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+            line-height: 1.8;
+        }
+        .imaging-media {
+            display: table-cell;
+            width: 60%;
+            padding: 30px;
+            vertical-align: top;
+        }
+        .imaging-media video,
+        .imaging-media img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #000;
+            padding: 40px 0;
+            border-top: 1px solid #222;
+        }
+        .footer-content {
+            display: table;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .footer-row {
+            display: table-row;
+        }
+        .footer-cell {
+            display: table-cell;
+            width: 33.33%;
+            padding: 10px;
+            vertical-align: top;
+        }
+        .footer-cell p {
+            color: #ccc;
+            font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+        }
+        .footer-cell a {
+            color: #f5c518;
+            text-decoration: none;
+        }
+        .footer-cell a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Banner -->
+    <section class="hero">
+        <img src="ap3_images/AP3-hero-banner.jpg" alt="AP3 Hero">
+        <div class="hero-content">
+            <h1>AP3</h1>
+            <p>AP3 Mirrorless Anamorphic Primes</p>
+        </div>
+    </section>
+
+    <!-- Range Section -->
+    <section class="range-section">
+        <div class="container">
+            <h2>Range</h2>
+            <div class="range-grid">
+                <div class="range-row">
+                    <div class="range-cell">
+                        <img src="ap3_images/AP3-35mm.jpg" alt="AP3 35mm">
+                        <h3>AP3</h3>
+                        <p>35mm</p>
+                    </div>
+                    <div class="range-cell">
+                        <img src="ap3_images/AP3-50mm.jpg" alt="AP3 50mm">
+                        <h3>AP3</h3>
+                        <p>50mm</p>
+                    </div>
+                    <div class="range-cell">
+                        <img src="ap3_images/AP3-85mm.jpg" alt="AP3 85mm">
+                        <h3>AP3</h3>
+                        <p>85mm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Sets -->
+    <section class="product-section">
+        <div class="container">
+            <h2>Product Sets</h2>
+            <div class="product-grid">
+                <div class="product-row">
+                    <div class="product-cell">
+                        <img src="ap3_images/AP3-single-lens.jpg" alt="Single AP3">
+                        <h3>Single AP3</h3>
+                        <p>The new AP3 is available as a single lens in its own carry case.</p>
+                    </div>
+                    <div class="product-cell">
+                        <img src="ap3_images/AP3-three-lens-set.jpg" alt="AP3 Three Lens Set">
+                        <h3>AP3 three lens set</h3>
+                        <p>A three lens set containing 35, 50 and 85mm with a hard carry case.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="features-grid">
+                <div class="features-row">
+                    <div class="features-cell">
+                        <div class="feature-item">
+                            <h4>User-changeable mount</h4>
+                            <p>User-changeable mounts for key cameras: E (fitted); RF, L, Z & M* (available to order as a free accessory)</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Compact and lightweight</h4>
+                            <p>Small and lightweight for their class and highly portable, well suited for handheld setups. An ergonomic design finished in a tough anodised shell.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Close focus</h4>
+                            <p>Class leading close focus performance offers more creative freedom and expedited filming.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Shared architecture</h4>
+                            <p>Focus and Iris mechanics are aligned across the set allowing for fast, smooth and accurate lens changes whilst maintaining focus and iris motor positions.</p>
+                        </div>
+                    </div>
+                    <div class="features-cell">
+                        <img src="ap3_images/AP3-features-overview.jpg" alt="AP3 Features" style="width:100%;height:auto;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User-changeable Mount Accordion -->
+    <section class="accordion-section">
+        <div class="container">
+            <h2>User-changeable Mount</h2>
+            <div class="accordion-container">
+                <div class="accordion-row">
+                    <div class="accordion-left">
+                        <div class="accordion-item">
+                            <div class="accordion-header" onclick="carouselGo(0)">
+                                <span>User-changeable mount</span>
+                                <span class="accordion-icon">−</span>
+                            </div>
+                            <div class="accordion-body" style="display:block;">
+                                <p>User-changeable mounts for key cameras: E (fitted); RF, L, Z & M* (available to order as a free accessory)</p>
+                                <div class="carousel-progress">
+                                    <div class="carousel-progress-bar" style="width:0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header" onclick="carouselGo(1)">
+                                <span>Compact and lightweight</span>
+                                <span class="accordion-icon">+</span>
+                            </div>
+                            <div class="accordion-body" style="display:none;">
+                                <p>Small and lightweight for their class and highly portable, well suited for handheld setups. An ergonomic design finished in a tough anodised shell.</p>
+                                <div class="carousel-progress">
+                                    <div class="carousel-progress-bar" style="width:0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header" onclick="carouselGo(2)">
+                                <span>Close focus</span>
+                                <span class="accordion-icon">+</span>
+                            </div>
+                            <div class="accordion-body" style="display:none;">
+                                <p>Class leading close focus performance offers more creative freedom and expedited filming.</p>
+                                <div class="carousel-progress">
+                                    <div class="carousel-progress-bar" style="width:0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header" onclick="carouselGo(3)">
+                                <span>Shared architecture</span>
+                                <span class="accordion-icon">+</span>
+                            </div>
+                            <div class="accordion-body" style="display:none;">
+                                <p>Focus and Iris mechanics are aligned across the set allowing for fast, smooth and accurate lens changes whilst maintaining focus and iris motor positions.</p>
+                                <div class="carousel-progress">
+                                    <div class="carousel-progress-bar" style="width:0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-right">
+                        <div class="media-container">
+                            <video id="accordion-media" muted loop playsinline style="width:100%;height:auto;display:block;">
+                                <source src="ap3_images/AP3-user-changeable-mount.mp4" type="video/mp4">
+                            </video>
+                            <div class="video-progress">
+                                <div class="video-progress-bar" style="width:0%;"></div>
+                            </div>
+                        </div>
+                        <img id="accordion-image" src="ap3_images/AP3-user-changeable-mount.jpg" alt="Product" style="width:100%;height:auto;display:none;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Imaging Philosophy -->
+    <section class="imaging-section">
+        <div class="container">
+            <h2>Imaging</h2>
+            <div class="imaging-container">
+                <div class="imaging-row">
+                    <div class="imaging-text">
+                        <h5>Imaging</h5>
+                        <h3>用光作畫</h3>
+                        <p>偉大的攝影師總是很會說故事。AP3 將 Cooke 高階變形鏡頭的光學傳承帶入輕巧的無反光鏡頭系列中。平衡、有目的性地展現電影深度與角色，帶來你期待的 Cooke distinctive 質感。</p>
+                    </div>
+                    <div class="imaging-media">
+                        <video autoplay muted loop playsinline style="width:100%;height:auto;display:block;">
+                            <source src="ap3_images/AP3-Heritage-Tile-2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-row">
+                    <div class="footer-cell">
+                        <p>果園影像器材有限公司 All Rights Reserved 2019 <br>
+                        <a href="mailto:sherry.gm@gmail.com">Email：sherry.gm@gmail.com</a><br>
+                        http://www.vpia-tw.com</p>
+                    </div>
+                    <div class="footer-cell" style="text-align:center;">
+                        <a href="/"><img src="https://vpia-tw.com/images/logo.png" title="果園影像器材有限公司" style="max-width:150px;"></a><br>
+                        2025.03.20 更新
+                    </div>
+                    <div class="footer-cell" style="text-align:right;">
+                        <h3><a href="tel:+886233932808">+ 886 2 3393 2808</a></h3>
+                        <p>台北市信義路二段114巷1號2樓106</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        var carouselSrcs = [
+            'AP3-user-changeable-mount.mp4',
+            'AP3-compact.jpg',
+            'AP3-user-changeable-mount.jpg',
+            'AP3-imaging-philosophy.jpg'
+        ];
+        var carouselIndex = 0;
+        var carouselTimer = null;
+        var carouselPaused = false;
+        var carouselDuration = 4000;
+        var carouselStartTime = 0;
+        var carouselAnim = null;
+
+        function carouselGo(i) {
+            var bodies = document.querySelectorAll('.accordion-body');
+            var headers = document.querySelectorAll('.accordion-header');
+            var allProgress = document.querySelectorAll('.carousel-progress-bar');
+            if (!bodies.length) return;
+            carouselIndex = ((i % bodies.length) + bodies.length) % bodies.length;
+            for (var j = 0; j < bodies.length; j++) {
+                bodies[j].style.display = 'none';
+                headers[j].querySelector('.accordion-icon').textContent = '+';
+                if (allProgress[j]) allProgress[j].style.width = '0%';
+            }
+            bodies[carouselIndex].style.display = 'block';
+            headers[carouselIndex].querySelector('.accordion-icon').textContent = '−';
+            var media = document.getElementById('accordion-media');
+            var img = document.getElementById('accordion-image');
+            var src = carouselSrcs[carouselIndex];
+            if (media && img) {
+                if (src && src.endsWith('.mp4')) {
+                    media.style.display = 'block';
+                    img.style.display = 'none';
+                    media.querySelector('source').src = 'ap3_images/' + src;
+                    media.load();
+                    media.play().catch(function(){});
+                } else if (src) {
+                    media.style.display = 'none';
+                    img.style.display = 'block';
+                    img.src = 'ap3_images/' + src;
+                }
+            }
+            carouselStartTime = Date.now();
+            carouselAnimate();
+        }
+
+        function carouselAnimate() {
+            var fill = document.querySelectorAll('.carousel-progress-bar')[carouselIndex];
+            if (!fill) return;
+            var elapsed = Date.now() - carouselStartTime;
+            var pct = Math.min((elapsed / carouselDuration) * 100, 100);
+            fill.style.width = pct + '%';
+            if (pct < 100 && !carouselPaused) {
+                carouselAnim = requestAnimationFrame(carouselAnimate);
+            }
+        }
+
+        function carouselNext() {
+            carouselGo(carouselIndex + 1);
+            carouselTimer = setTimeout(carouselNext, carouselDuration);
+        }
+
+        function carouselStop() {
+            if (carouselTimer) { clearTimeout(carouselTimer); carouselTimer = null; }
+            if (carouselAnim) { cancelAnimationFrame(carouselAnim); carouselAnim = null; }
+        }
+
+        window.addEventListener('load', function() {
+            carouselGo(0);
+            var box = document.querySelector('.accordion-item');
+            if (box) {
+                box.addEventListener('mouseenter', function() { 
+                    carouselPaused = true; 
+                    if (carouselTimer) { clearTimeout(carouselTimer); carouselTimer = null; }
+                });
+                box.addEventListener('mouseleave', function() { 
+                    carouselPaused = false; 
+                    carouselStartTime = Date.now();
+                    carouselAnimate();
+                    carouselTimer = setTimeout(carouselNext, carouselDuration);
+                });
+            }
+            setTimeout(function() {
+                carouselStartTime = Date.now();
+                carouselAnimate();
+                carouselTimer = setTimeout(carouselNext, carouselDuration);
+            }, 1000);
+        });
+
+        window.addEventListener('load', function() {
+            var headers = document.querySelectorAll('.accordion-header');
+            for (var i = 0; i < headers.length; i++) {
+                headers[i].addEventListener('click', function() {
+                    carouselPaused = true;
+                    if (carouselTimer) { clearTimeout(carouselTimer); carouselTimer = null; }
+                    setTimeout(function() { 
+                        carouselPaused = false; 
+                        carouselStartTime = Date.now();
+                        carouselAnimate();
+                        carouselTimer = setTimeout(carouselNext, carouselDuration);
+                    }, 2000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
